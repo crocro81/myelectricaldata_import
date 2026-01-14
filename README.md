@@ -16,7 +16,7 @@ Toutes les données seront importées dans un cache local (SQLite) ou externe (P
 
 - MQTT
 - Home Assistant (Via l'auto-discovery MQTT)
-- InfluxDB
+- InfluxDB / VictoriaMetrics
 - PostgresSQL
 
 L'outil possède également des APIs.
@@ -58,7 +58,7 @@ All data are import in local cache (SQLite) or external backend (PostgreSQL) whi
 
 - MQTT
 - Home Assistant (auto-discovery MQTT)
-- InfluxDB
+- InfluxDB / VictoriaMetrics
 - PostgresSQL
 
 The tool also has APIs.

@@ -17,6 +17,9 @@ ports:
 
 options:
   log_level: info
+  config_path: /data/config.yaml
 
 schema:
   log_level: list(debug|info|warning|error)
+  config_path: str
+

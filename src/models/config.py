@@ -27,7 +27,11 @@ class Config:
         self.path = path
         self.db = None
         self.file = "config.yaml"
-        self.path_file = f"{self.path}/{self.file}"
+        from os import getenv
+        self.path_file = getenv(
+        "CONFIG_PATH",
+        f"{self.path}/{self.file}"
+        )
         self.config = {}
         self.default_port = 5000
         self.mandatory_parameters = {}

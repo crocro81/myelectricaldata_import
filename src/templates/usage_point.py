@@ -835,19 +835,26 @@ class UsagePoint:
                 }"""
         else:
             logging.error("Pas de données.")
-
+    
     def generate_data(self, measurement_direction):
-        data = self.db.get_daily_all(self.usage_point_id, measurement_direction)
-        result = {}
-        for item in data:
-            year = item.date.strftime("%Y")
-            month = item.date.strftime("%m")
-            if year not in result:
-                result[year] = {"value": 0, "month": {}}
-            if month not in result[year]["month"]:
-                result[year]["month"][month] = 0
-            result[year]["value"] = result[year]["value"] + item.value
-            result[year]["month"][month] = result[year]["month"][month] + item.value
+            data = self.db.get_daily_all(self.usage_point_id, measurement_direction)
+            result = {}
+            stat = Stat(self.usage_point_id, measurement_direction)
+            for item in data:
+                year = item.date.strftime("%Y")
+                month = item.date.strftime("%m")
+                if year not in result:
+                    result[year] = {"value": 0, "month": {}}
+                if month not in result[year]["month"]:
+                    result[year]["month"][month] = 0
+                value = item.value
+                if value == 0:
+                    hc = stat.get_daily(item.date, "HC")
+                    hp = stat.get_daily(item.date, "HP")
+                    if hc + hp > 0:
+                        value = hc + hp
+                result[year]["value"] = result[year]["value"] + value
+                result[year]["month"][month] = result[year]["month"][month] + value
         if measurement_direction == "consumption":
             self.recap_consumption_data = result
         else:

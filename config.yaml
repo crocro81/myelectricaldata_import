@@ -2,9 +2,15 @@ name: "MyElectricalData"
 version: "1.0.0"
 slug: "myelectricaldata"
 description: "Enedis MyElectricalData service"
+
 startup: application
 boot: auto
 init: false
+
+arch:
+  - amd64
+  - aarch64
+  - armv7
 
 ports:
   5000/tcp: 5000

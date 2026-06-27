@@ -1,25 +1,12 @@
-name: "MyElectricalData"
-version: "1.0.0"
-slug: "myelectricaldata"
-description: "Enedis MyElectricalData service"
-
-startup: application
-boot: auto
-init: false
-
-arch:
-  - amd64
-  - aarch64
-  - armv7
-
-ports:
-  5000/tcp: 5000
-
-options:
-  log_level: info
-  config_path: /data/config.yaml
-
-schema:
-  log_level: list(debug|info|warning|error)
-  config_path: str
-
+{
+  "name": "MyElectricalData Custom",
+  "slug": "myelectricaldata_custom",
+  "version": "1.0.0",
+  "description": "HAOS addon basé sur MyElectricalData officiel",
+  "startup": "services",
+  "boot": "auto",
+  "arch": ["amd64", "aarch64", "armv7"],
+  "host_network": true,
+  "options": {},
+  "schema": {}
+}
